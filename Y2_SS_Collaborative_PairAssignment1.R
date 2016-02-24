@@ -1,18 +1,22 @@
-##CSSD Pair Assignment 1
+##########################
+# CSSD Pair Assignment 1: File structure, version control, R data, descriptive statistics
+# Authors: Daniel Limber & Lukas Müller
+# Packages | Dataset | Working Directory
+##########################
 
-#load packages
+# load packages
 library(ggplot2)
 library(dplyr)
 library(magrittr)
 library(knitr)
 
-#working directory
+# working directory
 try("C:/Users/Dani/Documents/GitHub2/PairAssignment1")
-try()
+try("/Users/Lukas/Documents/Git/PairAssignment1")
 setwd()
 
-#load dataset
+# load dataset
 data("ToothGrowth")
 
-#information on dataset
+# information on dataset
 ?ToothGrowth
