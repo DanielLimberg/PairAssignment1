@@ -24,3 +24,15 @@ for (i in 1:length(names(ToothGrowth))) {
 }
 
 # Measures of Dispersion: Standard Deviation | Range | IQR | Boxplots
+
+## Range
+range(ToothGrowth$len)
+
+## Quartiles
+range(ToothGrowth$len)
+
+## Interquartile Range
+IQR(ToothGrowth$len)
+
+## Boxplots
+boxplot(ToothGrowth$len, main = 'Length of Teeth')
