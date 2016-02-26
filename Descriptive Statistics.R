@@ -7,9 +7,20 @@
 ##########################
 
 # Dynamical Link to first R script file
+source("Y2_SS_Collaborative_PairAssignment1.R")
 
+# Summary Statistics
+summary(ToothGrowth)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
+## Loop for Mean of each Column
+for (i in 1:length(names(ToothGrowth))) {
+  ToothGrowth[, i] %>%
+    mean() %>%
+    round(digits = 1) %>%
+    paste(names(ToothGrowth)[i], ., '\n') %>%
+    cat()
+}
 
 # Measures of Dispersion: Standard Deviation | Range | IQR | Boxplots
