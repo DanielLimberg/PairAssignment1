@@ -38,7 +38,7 @@ for (i in 2:3) {
     cat()
 }
 
-## Distribution of Variables
+## Distribution of Variables (Histograms)
 
 ### Length of Teeth
 hist(teeth$len,
@@ -56,7 +56,7 @@ hist(teeth$dose,
      xlab = "Dose in mg/days",
      ylab = "Number of Guinea Pigs")
 
-### Frequency of Supplement
+### Frequency of Supplement given to Guinea Pigs
 plot(teeth$supp, xlab = "Supplement")
 
 hist(len~supp, data=teeth,
@@ -65,7 +65,7 @@ hist(len~supp, data=teeth,
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
-## Range
+## Loop for Range
 for (i in 2:3) {
   teeth[, i] %>%
     range() %>%
@@ -73,7 +73,15 @@ for (i in 2:3) {
     cat()
 }
 
-## Quartiles
+## Loop for Standard Deviation
+for (i in 2:3) {
+  teeth[, i] %>%
+    sd() %>%
+    paste(names(teeth)[i], ., "\n") %>%
+    cat()
+}
+
+## Loop for Quartiles
 summary(teeth$len)
 for (i in 2:3) {
   teeth[, i] %>%
@@ -82,7 +90,7 @@ for (i in 2:3) {
     cat()
 }
 
-## Interquartile Range
+## Loop for Interquartile Range IQR
 for (i in 2:3) {
   teeth[, i] %>%
     IQR() %>%
@@ -90,10 +98,20 @@ for (i in 2:3) {
     cat()
 }
 
-## Boxplots
+## Boxplots 
+
 boxplot(len~supp, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Dose per Suppliment")
+        main="Lenght of Teeth", xlab="Supplement")
+
+boxplot(len~dose, data=teeth, varwidth=TRUE, notch=FALSE,
+        col=(c("gold","darkgreen")),
+        main="Lenght of Teeth", xlab="Dose in mg/days")
+
+boxplot(len~supp*dose, data=teeth, varwidth=TRUE, notch=FALSE,
+        col=(c("gold","darkgreen")),
+        main="Lenght of Teeth", xlab="Supplement")
+
 
 ## Variance: Sum of Differences
 x <- teeth$len
