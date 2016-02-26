@@ -16,25 +16,19 @@ rm(ToothGrowth)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
-<<<<<<< HEAD
-## Loop for Mean of each Variable (NA for supply(2) which is nominal)
-for (i in 1:3) {
-=======
 ## Loop for Mean of each Variable except supply (nominal)
 for (i in 2:3) {
->>>>>>> origin/master
   teeth[, i] %>%
     mean() %>%
     round(digits = 2) %>%
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
- 
-<<<<<<< HEAD
+
 ## Loop for Median of each Variable (supply (2) is nominal)
 median(teeth$len)
 median(teeth$dose)
-=======
+
 ## Loop for Median of each Variable except supply (nominal)
 for (i in 2:3) {
   teeth[, i] %>%
