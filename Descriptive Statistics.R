@@ -12,62 +12,69 @@ source("Y2_SS_Collaborative_PairAssignment1.R")
 # Summary Statistics
 summary(ToothGrowth)
 teeth <- ToothGrowth[,c(2,1,3)]
+rm(ToothGrowth)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
 ## Loop for Mean of each Variable (NA for supply(2) which is nominal)
 for (i in 1:3) {
-  ToothGrowth[, i] %>%
+  teeth[, i] %>%
     mean() %>%
     round(digits = 2) %>%
-    paste(names(ToothGrowth)[i], ., "\n") %>%
+    paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
  
 ## Loop for Median of each Variable (supply (2) is nominal)
-median(ToothGrowth$len)
-median(ToothGrowth$dose)
+median(teeth$len)
+median(teeth$dose)
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
 ## Range
-range(ToothGrowth$dose)
-for (i in 1:2) {
-  ToothGrowth[, i] %>%
+for (i in 2:3) {
+  teeth[, i] %>%
     range() %>%
-    paste(names(ToothGrowth)[i], ., "\n") %>%
+    paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
 
 ## Quartiles
-summary(ToothGrowth$len)
-for (i in 1:3) {
-  ToothGrowth[, i] %>%
+for (i in 2:3) {
+  teeth[, i] %>%
     summary() %>%
-    paste(names(ToothGrowth)[i], ., "\n") %>%
+    paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
 
 ## Interquartile Range
-IQR(ToothGrowth$len)
-for (i in 1:3) {
-  ToothGrowth[, i] %>%
+for (i in 2:3) {
+  teeth[, i] %>%
     IQR() %>%
-    paste(names(ToothGrowth)[i], ., "\n") %>%
+    paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
 
 ## Boxplots
-boxplot(ToothGrowth$len, main = 'Length of Teeth')
-for (i in 1:3) {
-  ToothGrowth[, i] %>%
-    boxplot() %>%
-    paste(names(ToothGrowth)[i], ., "\n") %>%
-    cat()
-}
+boxplot(len~supp, data=teeth, varwidth=TRUE, notch=FALSE,
+        col=(c("gold","darkgreen")),
+        main="Lenght of Teeth", xlab="Dose per Suppliment")
 
-## Variance: two ways to calculate
-x <- ToothGrowth$len
-sum( (x - mean(x) )^2 )
-var(x) * (length(x) - 1)
-rm(i, x)
+## Variance: Sum of Differences
+x <- teeth$len
+sum(x - mean(x) )
+
+## Variance: Sum of Squares
+a <- sum((x - mean(x))^2)
+table(a)
+
+## Variance: Degrees of Freedom
+b <- (length(x) - 1)
+table(b)
+
+## Variance: s^2
+c <- (a/b)
+table(c)
+var(teeth$len)
+
+rm(a, b, c, i, x)
