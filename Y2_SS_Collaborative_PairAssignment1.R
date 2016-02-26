@@ -17,6 +17,7 @@ setwd("/Users/Lukas/Documents/Git/PairAssignment1")
 
 # load dataset
 data("ToothGrowth")
+names(ToothGrowth)
 
 # information on dataset
 ?ToothGrowth
