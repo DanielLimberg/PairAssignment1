@@ -13,9 +13,7 @@ library(magrittr)
 library(knitr)
 
 # working directory
-try("C:/Users/Dani/Documents/GitHub2/PairAssignment1")
-try("/Users/Lukas/Documents/Git/PairAssignment1")
-setwd()
+setwd("/Users/Lukas/Documents/Git/PairAssignment1")
 
 # load dataset
 data("ToothGrowth")
