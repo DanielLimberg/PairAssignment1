@@ -14,14 +14,18 @@ summary(ToothGrowth)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
-## Loop for Mean of each Column
-for (i in 1:length(names(ToothGrowth))) {
+## Loop for Mean of each Variable (NA for supply(2) which is nominal)
+for (i in 1:3) {
   ToothGrowth[, i] %>%
     mean() %>%
-    round(digits = 1) %>%
-    paste(names(ToothGrowth)[i], ., '\n') %>%
+    round(digits = 2) %>%
+    paste(names(ToothGrowth)[i], ., "\n") %>%
     cat()
 }
+ 
+## Loop for Median of each Variable (supply (2) is nominal)
+median(ToothGrowth$len)
+median(ToothGrowth$dose)
 
 # Measures of Dispersion: Standard Deviation | Range | IQR | Boxplots
 
