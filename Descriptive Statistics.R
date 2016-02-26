@@ -59,6 +59,9 @@ hist(teeth$dose,
 ### Frequency of Supplement
 plot(teeth$supp, xlab = "Supplement")
 
+hist(len~supp, data=teeth,
+        col=(c("gold","darkgreen")),
+        main="Lenght of Teeth", xlab="Supplement")
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
