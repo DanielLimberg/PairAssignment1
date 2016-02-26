@@ -25,7 +25,10 @@ for (i in 2:3) {
     cat()
 }
 
-## Loop for Median of each Variable (supply (2) is nominal)
+##mean length of teeth for 'OJ' and 'VC' seperately
+tapply(teeth$len, teeth$supp, mean)
+
+## Loop for Median of each Variable
 median(teeth$len)
 median(teeth$dose)
 
@@ -59,13 +62,15 @@ hist(teeth$dose,
 ### Frequency of Supplement given to Guinea Pigs
 plot(teeth$supp, xlab = "Supplement")
 
-len <- teeth$length
-supp <- teeth$length
-dose <- teeth$dose
-plot(len~dose*supp, data=teeth,
-        col=(c("gold","darkgreen")),
-        xlab="Supplement", ylab="Lenght of Teeth")
-rm(len, supp, dose)
+## compare supplements visually
+par(mfrow=c(1,2))
+hist(teeth$len[teeth$supp=="VC"],
+        col=(c("firebrick1")),
+        xlab="Length of Teeth", ylab="Frequency")
+hist(teeth$len[teeth$supp=="OJ"],
+     col=(c("mediumspringgreen")),
+     xlab="Length of Teeth", ylab="Frequency")
+
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
@@ -98,6 +103,14 @@ for (i in 2:3) {
 for (i in 2:3) {
   teeth[, i] %>%
     IQR() %>%
+    paste(names(teeth)[i], ., "\n") %>%
+    cat()
+}
+
+## Loop for Standard Deviation
+for (i in 2:3) {
+  teeth[, i] %>%
+    sd() %>%
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
