@@ -59,9 +59,13 @@ hist(teeth$dose,
 ### Frequency of Supplement given to Guinea Pigs
 plot(teeth$supp, xlab = "Supplement")
 
-hist(len~supp, data=teeth,
+len <- teeth$length
+supp <- teeth$length
+dose <- teeth$dose
+plot(len~dose*supp, data=teeth,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Supplement")
+        xlab="Supplement", ylab="Lenght of Teeth")
+rm(len, supp, dose)
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
