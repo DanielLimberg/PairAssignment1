@@ -11,6 +11,7 @@ source("Y2_SS_Collaborative_PairAssignment1.R")
 
 # Summary Statistics
 summary(ToothGrowth)
+teeth <- ToothGrowth[,c(2,1,3)]
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
@@ -27,16 +28,46 @@ for (i in 1:3) {
 median(ToothGrowth$len)
 median(ToothGrowth$dose)
 
-# Measures of Dispersion: Standard Deviation | Range | IQR | Boxplots
+# Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
 ## Range
-range(ToothGrowth$len)
+range(ToothGrowth$dose)
+for (i in 1:2) {
+  ToothGrowth[, i] %>%
+    range() %>%
+    paste(names(ToothGrowth)[i], ., "\n") %>%
+    cat()
+}
 
 ## Quartiles
-range(ToothGrowth$len)
+summary(ToothGrowth$len)
+for (i in 1:3) {
+  ToothGrowth[, i] %>%
+    summary() %>%
+    paste(names(ToothGrowth)[i], ., "\n") %>%
+    cat()
+}
 
 ## Interquartile Range
 IQR(ToothGrowth$len)
+for (i in 1:3) {
+  ToothGrowth[, i] %>%
+    IQR() %>%
+    paste(names(ToothGrowth)[i], ., "\n") %>%
+    cat()
+}
 
 ## Boxplots
 boxplot(ToothGrowth$len, main = 'Length of Teeth')
+for (i in 1:3) {
+  ToothGrowth[, i] %>%
+    boxplot() %>%
+    paste(names(ToothGrowth)[i], ., "\n") %>%
+    cat()
+}
+
+## Variance: two ways to calculate
+x <- ToothGrowth$len
+sum( (x - mean(x) )^2 )
+var(x) * (length(x) - 1)
+rm(i, x)
