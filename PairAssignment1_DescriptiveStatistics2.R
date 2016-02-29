@@ -4,6 +4,7 @@
 # Starting Date: 02/20/2016 | Last edited: 02/24/2016
 # Authors: Daniel Limberg & Lukas Müller
 # Descriptive Statistics: Measures of Central Tendency | Measures of Dispersion
+# NASA Dataset
 ##########################
 
 # working directory
@@ -14,6 +15,7 @@ getwd()
 # Dynamical Link to first R script file
 source("Y2_SS_Collaborative_PairAssignment1.R")
 rm(ToothGrowth)
+
 
 # Summary Statistics
 summary(nasa)
@@ -120,17 +122,12 @@ for (i in 5:11) {
 
 ## Boxplots 
 
-boxplot(len~supp, data=nasa, varwidth=TRUE, notch=FALSE,
-        col=(c("gold","darkgreen")),
-        main="Lenght of nasa", xlab="Supplement")
+par(mfcol = c(1, 2))
+boxplot(nasa$ozone,
+        main="Ozone", ylab="DU of Ozone")
+boxplot(nasa$temperature,
+        main="Temperature", ylab="Temparature in Kelvin")
 
-boxplot(len~dose, data=nasa, varwidth=TRUE, notch=FALSE,
-        col=(c("gold","darkgreen")),
-        main="Lenght of nasa", xlab="Dose in mg/days")
-
-boxplot(len~supp*dose, data=nasa, varwidth=TRUE, notch=FALSE,
-        col=(c("gold","darkgreen")),
-        main="Lenght of nasa", xlab="Supplement")
 
 
 ## Variance: Sum of Differences
