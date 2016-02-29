@@ -15,6 +15,7 @@ library(knitr)
 # working directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
 try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
+getwd()
 
 # load dataset
 data("ToothGrowth")
