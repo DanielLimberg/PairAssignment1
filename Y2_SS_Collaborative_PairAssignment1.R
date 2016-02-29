@@ -13,16 +13,16 @@ library(magrittr)
 library(knitr)
 library(MASS)
 
-# working directory
+# Set Working Directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
 try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
 getwd()
 
-# load dataset 1
+# Load Dataset 1
 data("ToothGrowth")
 names(ToothGrowth)
 
-# load data set 2
+# Load Dataset 2
 data("nasa")
 names(nasa)
 nasa <- data.frame(nasa)
