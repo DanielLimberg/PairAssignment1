@@ -19,24 +19,17 @@ rm(ToothGrowth)
 
 # Summary Statistics
 summary(nasa)
+nasa <- nasa[,c(1,2,3,4,6,5,7,8,9,10,11)]
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
-## Loop for Mean of each Variable except supply (nominal)
-for (i in 5:11) {
-  nasa[, i] %>%
-    mean() %>%
-    round(digits = 2) %>%
-    paste(names(nasa)[i], ., "\n") %>%
-    cat()
-}
-
-##mean ozone for northern and southern hemisphere
+## mean ozone for northern and southern hemisphere
 nasa$hem <- nasa$lat
 nasa$hem[nasa$lat>0] <- 1 #northern hemisphere
 nasa$hem[nasa$lat<0] <- 0 #southern hemisphere
 
 tapply(nasa$ozone, nasa$hem, mean)
+tapply(nasa$temperature, nasa$hem, mean)
 
 ## Loop for Mean of each Variable
 for (i in 5:11) {
@@ -56,35 +49,49 @@ for (i in 5:11) {
     cat()
 }
 
-rm(i)
-
 ## Distribution of Variables (Histograms)
 
 ### nasa$ozone
 hist(nasa$ozone,
-     main="Ozone in the Atmosphere", 
-     col="blue", 
+     main = "Ozone in the Atmosphere", 
+     col = "deepskyblue2", 
      breaks = 20,
      xlab = "Ozone",
      ylab = "Frequency")
 
 ### nasa$temp
 hist(nasa$temperature,
-     main="Global Temperature", 
-     col="red", 
+     main = "Global Temperature", 
+     col = "firebrick1", 
      breaks = 10,
      xlab = "Temp.",
      ylab = "Frequency")
 
-## compare supplements visually
-par(mfrow=c(1,2))
+## compare hemispheres visually
+par(mfrow=c(2,2))
 hist(nasa$ozone[nasa$hem==1],
-        col=(c("mediumspringgreen")),
-        xlab="Ozone", ylab="Frequency")
+     main = "Ozone, N.",
+     col = (c("deepskyblue2")),
+     xlab = "Ozone", ylab="Frequency")
+hist(nasa$ozone[nasa$hem==0],
+     main = "Ozone, S.",
+     col = (c("deepskyblue2")),
+     xlab = "Ozone.", ylab="Frequency")
+hist(nasa$temperature[nasa$hem==1],
+     main = "Temp., N.",
+     col = (c("firebrick1")),
+     xlab = "Temp.", ylab="Frequency")
 hist(nasa$temperature[nasa$hem==0],
-     col=(c("firebrick1")),
-     xlab="Temp.", ylab="Frequency")
+     main = "Temp., S.",
+     col = (c("firebrick1")),
+     xlab = "Temp.", ylab="Frequency")
 par(mfrow=c(1,1))
+
+## histogram over time
+library(stringr)
+nasa$month <- str_pad(nasa$month, 2, pad = "0") #add zero before one digit number
+library(dplyr)
+nasa$month <- month.abb[nasa$month]
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
@@ -104,8 +111,8 @@ for (i in 5:11) {
     cat()
 }
 
-## Loop for Interquartile Range IQR
-for (i in 5:11) {
+## Loop for Interquartile Range IQR, except variables w/ NA's
+for (i in 6:11) {
   nasa[, i] %>%
     IQR() %>%
     paste(names(nasa)[i], ., "\n") %>%
@@ -131,7 +138,7 @@ boxplot(nasa$temperature,
 
 
 ## Variance: Sum of Differences
-x <- nasa$len
+x <- nasa$temperature
 sum(x - mean(x) )
 
 ## Variance: Sum of Squares
@@ -145,6 +152,6 @@ table(b)
 ## Variance: s^2
 c <- (a/b)
 table(c)
-var(nasa$len)
+var(nasa$temperature)
 
 rm(a, b, c, i, x)
