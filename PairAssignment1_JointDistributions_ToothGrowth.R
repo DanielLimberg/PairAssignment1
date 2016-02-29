@@ -17,7 +17,11 @@ source("PairAssignment1_DescriptiveStatistics_ToothGrowth.R")
 
 # Correlation plots
 qplot(dose, len, data=teeth)
+
+## A higher dose (regardless of the supplement) in general leads to 
+## longer teeth in the overall sample 
 qplot(supp, len, data=teeth)
+## Supplement OJ is more efficient (i.e. less guinea pigs with shorter teeth)
 
 # Test of statistical significance
 
@@ -40,3 +44,4 @@ chisq.test(tbl)
 
 tbl <- table(teeth$dose, teeth$len2)
 chisq.test(tbl)
+
