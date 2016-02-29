@@ -7,7 +7,7 @@
 # ToothGrowth Dataset
 ##########################
 
-# working directory
+# Working Directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
 try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
 getwd()
@@ -17,12 +17,13 @@ source("Y2_SS_Collaborative_PairAssignment1.R")
 
 # Summary Statistics
 summary(ToothGrowth)
+## Summarizes variable: all contineous, except 'supp': character variable.
 teeth <- ToothGrowth[,c(2,1,3)]
 rm(ToothGrowth)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
-## Loop for Mean of each Variable except supply (nominal)
+# Loop for Mean of each Variable except supply (nominal)
 for (i in 2:3) {
   teeth[, i] %>%
     mean() %>%
@@ -30,15 +31,14 @@ for (i in 2:3) {
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
+## The mean value for tooth length is 18.81 mm, and for supplement dose is 1.17 mg.
 
-##mean length of teeth for 'OJ' and 'VC' seperately
+# Mean length of teeth for 'OJ' and 'VC' seperately
 tapply(teeth$len, teeth$supp, mean)
+## The mean tooth length for guinea pigs treated with orange juice is 20.66 mm. 
+## For the ones given VJ supplements the mean length is 16.96 mm.
 
-## Loop for Median of each Variable
-median(teeth$len)
-median(teeth$dose)
-
-## Loop for Median of each Variable except supply (nominal)
+# Loop for Median of each Variable except supply (nominal)
 for (i in 2:3) {
   teeth[, i] %>%
     median() %>%
@@ -46,27 +46,32 @@ for (i in 2:3) {
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
+## The mean is a measure of central tendency sensitive to outliers. The median is less so.
+## Median length of teeth is 19.25 mm, the median dose is 1 mg.
 
-## Distribution of Variables (Histograms)
+# Distribution of Variables (Histograms)
 
-### Length of Teeth
+# Length of Teeth
 hist(teeth$len,
      main="Length of Teeth", 
      col="blue", 
      breaks = 20,
      xlab = "Length in mm",
      ylab = "Number of Guinea Pigs")
+## The data for tooth length is not normally distributed.
 
-### Dose in mg/days
+# Dose in mg/days
 hist(teeth$dose,
      main="Dose", 
      col="red", 
      breaks = 10,
      xlab = "Dose in mg/days",
      ylab = "Number of Guinea Pigs")
+## Each dose has been fed to the pigs 20 times.
 
-### Frequency of Supplement given to Guinea Pigs
+# Frequency of Supplement given to Guinea Pigs
 plot(teeth$supp, xlab = "Supplement")
+## Each supplement has been given 30 times to the pigs.
 
 ## compare supplements visually
 par(mfrow=c(1,2))
@@ -80,23 +85,25 @@ par(mfrow=c(1,1))
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
-## Loop for Range
+# Loop for Range
 for (i in 2:3) {
   teeth[, i] %>%
     range() %>%
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
+## Lenght ranges from 4.2 mm to 33.9 mm, and the dose from 0.5 mg to 2 mg per day.
 
-## Loop for Standard Deviation
+# Loop for Standard Deviation
 for (i in 2:3) {
   teeth[, i] %>%
     sd() %>%
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
+## The standard deviation for length is 7.65, and for theh dose this value is 0.63.
 
-## Loop for Quartiles
+# Loop for Quartiles
 summary(teeth$len)
 for (i in 2:3) {
   teeth[, i] %>%
@@ -104,22 +111,17 @@ for (i in 2:3) {
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
+## The values for the quartiles are: 13.08, 19,25, 18,81, and 25.28.
+## The first quartile for tooth length reaches from 4.2 to 13.08.
 
-## Loop for Interquartile Range IQR
+# Loop for Interquartile Range IQR
 for (i in 2:3) {
   teeth[, i] %>%
     IQR() %>%
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
-
-## Loop for Standard Deviation
-for (i in 2:3) {
-  teeth[, i] %>%
-    sd() %>%
-    paste(names(teeth)[i], ., "\n") %>%
-    cat()
-}
+## The innerquartile range for the length is 12.2 mm, and for the dose 1.5 mg.
 
 ## Boxplots 
 
@@ -136,21 +138,25 @@ boxplot(len~supp*dose, data=teeth, varwidth=TRUE, notch=FALSE,
         main="Lenght of Teeth", xlab="Supplement")
 
 
-## Variance: Sum of Differences
+# Step by step calculation of the Variance
 x <- teeth$len
 sum(x - mean(x) )
+## Sum of Differences: substracting the means from the values. The sum is 3.73.
 
-## Variance: Sum of Squares
 a <- sum((x - mean(x))^2)
 table(a)
+## Sum of Squares: summing up the suares of the differences. The sum is 3452.21.
 
-## Variance: Degrees of Freedom
 b <- (length(x) - 1)
 table(b)
+## Degrees of Freedom: number of observations minus 1. 60-1=59.
 
-## Variance: s^2
 c <- (a/b)
 table(c)
+## Variance: s^2. Dividing the Sum of Squares by Degrees of Freedom. The result is 58.51.
+
 var(teeth$len)
+## var = 58.51.
 
 rm(a, b, c, i, x)
+## Remove all the objects from the environment.
