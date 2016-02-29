@@ -20,6 +20,7 @@ summary(ToothGrowth)
 ## Summarizes variable: all contineous, except 'supp': character variable.
 teeth <- ToothGrowth[,c(2,1,3)]
 rm(ToothGrowth)
+# Set new order to simplify loops in the follwing
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
@@ -31,7 +32,6 @@ for (i in 2:3) {
     paste(names(teeth)[i], ., "\n") %>%
     cat()
 }
-## The mean value for tooth length is 18.81 mm, and for supplement dose is 1.17 mg.
 
 # Mean length of teeth for 'OJ' and 'VC' seperately
 tapply(teeth$len, teeth$supp, mean)
@@ -58,6 +58,7 @@ hist(teeth$len,
      breaks = 20,
      xlab = "Length in mm",
      ylab = "Number of Guinea Pigs")
+## Shows the distribution of tooth length in mm for the number of guinea pigs.
 ## The data for tooth length is not normally distributed.
 
 # Dose in mg/days
@@ -65,7 +66,7 @@ hist(teeth$dose,
      main="Dose", 
      col="red", 
      breaks = 10,
-     xlab = "Dose in mg/days",
+     xlab = "Dose in mg/day",
      ylab = "Number of Guinea Pigs")
 ## Each dose has been fed to the pigs 20 times.
 
@@ -73,15 +74,18 @@ hist(teeth$dose,
 plot(teeth$supp, xlab = "Supplement")
 ## Each supplement has been given 30 times to the pigs.
 
-## compare supplements visually
+# Visual Comparison of Supplements
 par(mfrow=c(1,2))
 hist(teeth$len[teeth$supp=="VC"],
-        col=(c("firebrick1")),
-        xlab="Length of Teeth", ylab="Frequency")
+     main="Supplement VC",
+     col=(c("firebrick1")),
+     xlab="Length of Teeth in mm", ylab="Frequency")
 hist(teeth$len[teeth$supp=="OJ"],
+     main="Supplement OJ",
      col=(c("mediumspringgreen")),
-     xlab="Length of Teeth", ylab="Frequency")
+     xlab="Length of Teeth in mm", ylab="Frequency")
 par(mfrow=c(1,1))
+## The histograms reveal, that the supplement OJ is more efficient (i.e. more longer teeth)
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
@@ -123,20 +127,33 @@ for (i in 2:3) {
 }
 ## The innerquartile range for the length is 12.2 mm, and for the dose 1.5 mg.
 
-## Boxplots 
+# Loop for Standard Deviation
+for (i in 2:3) {
+  teeth[, i] %>%
+    sd() %>%
+    paste(names(teeth)[i], ., "\n") %>%
+    cat()
+}
+## length: 7.64931517188761 
+## dose: 0.628872185733079 
+
+# Boxplots 
 
 boxplot(len~supp, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
         main="Lenght of Teeth", xlab="Supplement")
+## Combining measures of central tendency (mean, range and IQR), the boxplots also show that
+## supplement OJ is more efficient
 
 boxplot(len~dose, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
         main="Lenght of Teeth", xlab="Dose in mg/days")
+## Regardless of the supplement: The higher the dose, the longer the teeth on average
 
 boxplot(len~supp*dose, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
         main="Lenght of Teeth", xlab="Supplement")
-
+## Combining dose and supplement visually, again we find that the supplement OJ is more efficent
 
 # Step by step calculation of the Variance
 x <- teeth$len
