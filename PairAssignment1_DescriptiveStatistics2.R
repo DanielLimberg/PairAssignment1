@@ -13,49 +13,50 @@ getwd()
 
 # Dynamical Link to first R script file
 source("Y2_SS_Collaborative_PairAssignment1.R")
+rm(ToothGrowth)
 
 # Summary Statistics
-summary()
+summary(nasa)
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
 ## Loop for Mean of each Variable except supply (nominal)
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     mean() %>%
     round(digits = 2) %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
-##mean length of teeth for 'OJ' and 'VC' seperately
-tapply(teeth$len, teeth$supp, mean)
+##mean ozone of nasa for 
+tapply(nasa$len, nasa$supp, mean)
 
 ## Loop for Median of each Variable
-median(teeth$len)
-median(teeth$dose)
+median(nasa$len)
+median(nasa$dose)
 
 ## Loop for Median of each Variable except supply (nominal)
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     median() %>%
     round(digits = 2) %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Distribution of Variables (Histograms)
 
-### Length of Teeth
-hist(teeth$len,
-     main="Length of Teeth", 
+### Length of nasa
+hist(nasa$len,
+     main="Length of nasa", 
      col="blue", 
      breaks = 20,
      xlab = "Length in mm",
      ylab = "Number of Guinea Pigs")
 
 ### Dose in mg/days
-hist(teeth$dose,
+hist(nasa$dose,
      main="Dose", 
      col="red", 
      breaks = 10,
@@ -63,78 +64,78 @@ hist(teeth$dose,
      ylab = "Number of Guinea Pigs")
 
 ### Frequency of Supplement given to Guinea Pigs
-plot(teeth$supp, xlab = "Supplement")
+plot(nasa$supp, xlab = "Supplement")
 
 ## compare supplements visually
 par(mfrow=c(1,2))
-hist(teeth$len[teeth$supp=="VC"],
+hist(nasa$len[nasa$supp=="VC"],
         col=(c("firebrick1")),
-        xlab="Length of Teeth", ylab="Frequency")
-hist(teeth$len[teeth$supp=="OJ"],
+        xlab="Length of nasa", ylab="Frequency")
+hist(nasa$len[nasa$supp=="OJ"],
      col=(c("mediumspringgreen")),
-     xlab="Length of Teeth", ylab="Frequency")
+     xlab="Length of nasa", ylab="Frequency")
 par(mfrow=c(1,1))
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
 ## Loop for Range
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     range() %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Loop for Standard Deviation
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     sd() %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Loop for Quartiles
-summary(teeth$len)
-for (i in 2:3) {
-  teeth[, i] %>%
+summary(nasa$len)
+for (i in 5:11) {
+  nasa[, i] %>%
     summary() %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Loop for Interquartile Range IQR
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     IQR() %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Loop for Standard Deviation
-for (i in 2:3) {
-  teeth[, i] %>%
+for (i in 5:11) {
+  nasa[, i] %>%
     sd() %>%
-    paste(names(teeth)[i], ., "\n") %>%
+    paste(names(nasa)[i], ., "\n") %>%
     cat()
 }
 
 ## Boxplots 
 
-boxplot(len~supp, data=teeth, varwidth=TRUE, notch=FALSE,
+boxplot(len~supp, data=nasa, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Supplement")
+        main="Lenght of nasa", xlab="Supplement")
 
-boxplot(len~dose, data=teeth, varwidth=TRUE, notch=FALSE,
+boxplot(len~dose, data=nasa, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Dose in mg/days")
+        main="Lenght of nasa", xlab="Dose in mg/days")
 
-boxplot(len~supp*dose, data=teeth, varwidth=TRUE, notch=FALSE,
+boxplot(len~supp*dose, data=nasa, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Supplement")
+        main="Lenght of nasa", xlab="Supplement")
 
 
 ## Variance: Sum of Differences
-x <- teeth$len
+x <- nasa$len
 sum(x - mean(x) )
 
 ## Variance: Sum of Squares
@@ -148,6 +149,6 @@ table(b)
 ## Variance: s^2
 c <- (a/b)
 table(c)
-var(teeth$len)
+var(nasa$len)
 
 rm(a, b, c, i, x)
