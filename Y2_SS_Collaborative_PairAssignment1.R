@@ -6,7 +6,7 @@
 # Packages | Dataset | Working Directory
 ##########################
 
-# load packages
+# Load Packages
 library(ggplot2)
 library(dplyr)
 library(magrittr)
