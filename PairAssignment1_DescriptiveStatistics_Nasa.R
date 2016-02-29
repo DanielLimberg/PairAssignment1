@@ -51,6 +51,7 @@ north <- filter(nasa, !hem==0)
 tapply(north$ozone, north$QU, mean)
 south <- filter(nasa, !hem==1)
 tapply(south$temperature, south$QU, mean)
+rm(north, south)
 
 ## Loop for Mean of each Variable
 for (i in 5:11) {
