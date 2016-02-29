@@ -17,7 +17,10 @@ source("PairAssignment1_DescriptiveStatistics_ToothGrowth.R")
 
 # Correlation plots
 qplot(dose, len, data=teeth)
+## Regardless of the supplement, a higher dose generally leads to longer teeth on average
 qplot(supp, len, data=teeth)
+## On average, the OJ supplement is more efficient. Guinea pigs in this treatment group 
+## do have longer teeth compared to the VC treatment group
 
 # Test of statistical significance
 
