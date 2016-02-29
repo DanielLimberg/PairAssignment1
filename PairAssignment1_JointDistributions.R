@@ -6,15 +6,38 @@
 # Joint Distributions
 ##########################
 
+# load libraries
+library(MASS)
+
 # working directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
 try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
 getwd()
 
 # Dynamical Link to first R script file
-source("Y2_SS_Collaborative_PairAssignment1.R")
+source("PairAssignment1_DescriptiveStatistics.R")
 
 # Correlation plots
 
 
-# Test of statistical significance of Correlations with cor.test
+# Test of statistical significance
+
+## Difference in means test
+teeth$supp <- as.factor(teeth$supp)
+temp <- teeth$supp == "OJ"
+OJ <- teeth[temp,]$len
+VC <- teeth[!temp,]$len #supplement 'VC'
+
+t.test(OJ, VC)
+
+rm(temp, OJ, VC)
+
+## Chi sqare test
+teeth$len2 <- cut(teeth$len, c(0,12,19,25.2,40))
+teeth$len2 <- as.factor(teeth$len2)
+
+tbl <- table(teeth$supp, teeth$len2)
+chisq.test(tbl)
+
+tbl <- table(teeth$dose, teeth$len2)
+chisq.test(tbl)
