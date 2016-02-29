@@ -75,7 +75,7 @@ hist(teeth$len[teeth$supp=="VC"],
 hist(teeth$len[teeth$supp=="OJ"],
      col=(c("mediumspringgreen")),
      xlab="Length of Teeth", ylab="Frequency")
-
+par(mfrow=c(1,1))
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
