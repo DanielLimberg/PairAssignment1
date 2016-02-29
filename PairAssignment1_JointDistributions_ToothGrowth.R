@@ -13,7 +13,7 @@ try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
 getwd()
 
 # Dynamical Link to first R script file
-source("PairAssignment1_DescriptiveStatistics.R")
+source("PairAssignment1_DescriptiveStatistics_ToothGrowth.R")
 
 # Correlation plots
 qplot(dose, len, data=teeth)
