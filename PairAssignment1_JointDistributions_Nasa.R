@@ -42,3 +42,13 @@ ggplot(subset2000, aes(ozone, temperature)) +
   ggtitle("Correlation Temperature and Ozone Values 2000") +
   xlab("Ozone Values in DU") +
   ylab("Temperature in Kelvin")
+
+# difference in means test
+north <- filter(nasa, !hem==0)
+south <- filter(nasa, !hem==1)
+N <- north$ozone
+S <- south$ozone
+
+t.test(N, S)
+
+rm(N, S)
