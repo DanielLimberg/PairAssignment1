@@ -6,6 +6,11 @@
 # Joint Distributions
 ##########################
 
+# working directory
+try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
+try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
+getwd()
+
 # Dynamical Link to first R script file
 source("Y2_SS_Collaborative_PairAssignment1.R")
 
