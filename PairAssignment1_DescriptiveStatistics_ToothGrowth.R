@@ -20,7 +20,7 @@ summary(ToothGrowth)
 ## Summarizes variable: all contineous, except 'supp': character variable.
 teeth <- ToothGrowth[,c(2,1,3)]
 rm(ToothGrowth)
-# Set new order to simplify loops in the follwing
+## Set new order to simplify loops in the follwing
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
@@ -72,7 +72,7 @@ hist(teeth$dose,
 
 # Frequency of Supplement given to Guinea Pigs
 plot(teeth$supp, xlab = "Supplement")
-## Each supplement has been given 30 times to the pigs.
+## Each treatment group consisted of 30 guinea pigs
 
 # Visual Comparison of Supplements
 par(mfrow=c(1,2))
