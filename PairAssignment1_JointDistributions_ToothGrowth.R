@@ -17,7 +17,6 @@ source("PairAssignment1_DescriptiveStatistics_ToothGrowth.R")
 
 # Correlation plots
 qplot(dose, len, data=teeth)
-
 ## A higher dose (regardless of the supplement) in general leads to 
 ## longer teeth in the overall sample 
 qplot(supp, len, data=teeth)
