@@ -11,6 +11,7 @@ library(ggplot2)
 library(dplyr)
 library(magrittr)
 library(knitr)
+library(MASS)
 
 # working directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)

@@ -6,9 +6,6 @@
 # Joint Distributions
 ##########################
 
-# load libraries
-library(MASS)
-
 # working directory
 try(setwd("/Users/Lukas/Documents/Git/PairAssignment1"),silent=TRUE)
 try(setwd("C:/Users/Dani/Documents/GitHub2/PairAssignment1"),silent=TRUE)
@@ -33,7 +30,7 @@ t.test(OJ, VC)
 
 rm(temp, OJ, VC)
 
-## Chi sqare test
+## Chi square test
 teeth$len2 <- cut(teeth$len, c(0,12,19,25.2,40))
 teeth$len2 <- as.factor(teeth$len2)
 
