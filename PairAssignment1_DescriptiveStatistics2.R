@@ -23,13 +23,34 @@ nasa <- nasa[,c(1,2,3,4,6,5,7,8,9,10,11)]
 
 # Mesures of Central Tendency: Mean | Median | Histogram
 
-## mean ozone for northern and southern hemisphere
+## mean ozone and temperature for northern and southern hemisphere
 nasa$hem <- nasa$lat
 nasa$hem[nasa$lat>0] <- 1 #northern hemisphere
 nasa$hem[nasa$lat<0] <- 0 #southern hemisphere
 
 tapply(nasa$ozone, nasa$hem, mean)
 tapply(nasa$temperature, nasa$hem, mean)
+
+## mean ozone and temperature for quarter year
+
+nasa$QU <- nasa$month
+nasa$QU[nasa$month==1] <- "Q1"
+nasa$QU[nasa$month==2] <- "Q1"
+nasa$QU[nasa$month==3] <- "Q1"
+nasa$QU[nasa$month==4] <- "Q2"
+nasa$QU[nasa$month==5] <- "Q2"
+nasa$QU[nasa$month==6] <- "Q2"
+nasa$QU[nasa$month==7] <- "Q3"
+nasa$QU[nasa$month==8] <- "Q3"
+nasa$QU[nasa$month==9] <- "Q3"
+nasa$QU[nasa$month==10] <- "Q4"
+nasa$QU[nasa$month==11] <- "Q4"
+nasa$QU[nasa$month==12] <- "Q4"
+
+temp1 <- filter(nasa, !hem==0)
+tapply(temp1$ozone, temp1$QU, mean)
+temp2 <-
+tapply(nasa$temperature, nasa$QU, mean)
 
 ## Loop for Mean of each Variable
 for (i in 5:11) {
@@ -87,11 +108,6 @@ hist(nasa$temperature[nasa$hem==0],
      xlab = "Temp.", ylab="Frequency")
 par(mfrow=c(1,1))
 
-## histogram over time
-library(stringr)
-nasa$month <- str_pad(nasa$month, 2, pad = "0") #add zero before one digit number
-library(dplyr)
-nasa$month <- month.abb[nasa$month]
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
