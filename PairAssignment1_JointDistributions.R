@@ -4,6 +4,7 @@
 # Starting Date: 02/20/2016 | Last edited: 02/24/2016
 # Authors: Daniel Limberg & Lukas Müller
 # Joint Distributions
+# ToothGrowth Dataset
 ##########################
 
 # working directory
