@@ -29,14 +29,23 @@ for (i in 5:11) {
     cat()
 }
 
-##mean ozone of nasa for 
-tapply(nasa$len, nasa$supp, mean)
+##mean ozone for northern and southern hemisphere
+nasa$hem <- nasa$lat
+nasa$hem[nasa$lat>0] <- 1 #northern hemisphere
+nasa$hem[nasa$lat<0] <- 0 #southern hemisphere
+
+tapply(nasa$ozone, nasa$hem, mean)
+
+## Loop for Mean of each Variable
+for (i in 5:11) {
+  nasa[, i] %>%
+    mean() %>%
+    round(digits = 2) %>%
+    paste(names(nasa)[i], ., "\n") %>%
+    cat()
+}
 
 ## Loop for Median of each Variable
-median(nasa$len)
-median(nasa$dose)
-
-## Loop for Median of each Variable except supply (nominal)
 for (i in 5:11) {
   nasa[, i] %>%
     median() %>%
@@ -45,35 +54,34 @@ for (i in 5:11) {
     cat()
 }
 
+rm(i)
+
 ## Distribution of Variables (Histograms)
 
-### Length of nasa
-hist(nasa$len,
-     main="Length of nasa", 
+### nasa$ozone
+hist(nasa$ozone,
+     main="Ozone in the Atmosphere", 
      col="blue", 
      breaks = 20,
-     xlab = "Length in mm",
-     ylab = "Number of Guinea Pigs")
+     xlab = "Ozone",
+     ylab = "Frequency")
 
-### Dose in mg/days
-hist(nasa$dose,
-     main="Dose", 
+### nasa$temp
+hist(nasa$temperature,
+     main="Global Temperature", 
      col="red", 
      breaks = 10,
-     xlab = "Dose in mg/days",
-     ylab = "Number of Guinea Pigs")
-
-### Frequency of Supplement given to Guinea Pigs
-plot(nasa$supp, xlab = "Supplement")
+     xlab = "Temp.",
+     ylab = "Frequency")
 
 ## compare supplements visually
 par(mfrow=c(1,2))
-hist(nasa$len[nasa$supp=="VC"],
-        col=(c("firebrick1")),
-        xlab="Length of nasa", ylab="Frequency")
-hist(nasa$len[nasa$supp=="OJ"],
-     col=(c("mediumspringgreen")),
-     xlab="Length of nasa", ylab="Frequency")
+hist(nasa$ozone[nasa$hem==1],
+        col=(c("mediumspringgreen")),
+        xlab="Ozone", ylab="Frequency")
+hist(nasa$temperature[nasa$hem==0],
+     col=(c("firebrick1")),
+     xlab="Temp.", ylab="Frequency")
 par(mfrow=c(1,1))
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
@@ -86,16 +94,7 @@ for (i in 5:11) {
     cat()
 }
 
-## Loop for Standard Deviation
-for (i in 5:11) {
-  nasa[, i] %>%
-    sd() %>%
-    paste(names(nasa)[i], ., "\n") %>%
-    cat()
-}
-
 ## Loop for Quartiles
-summary(nasa$len)
 for (i in 5:11) {
   nasa[, i] %>%
     summary() %>%
