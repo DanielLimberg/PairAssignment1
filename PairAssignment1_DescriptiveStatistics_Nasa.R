@@ -47,10 +47,10 @@ nasa$QU[nasa$month==10] <- "Q4"
 nasa$QU[nasa$month==11] <- "Q4"
 nasa$QU[nasa$month==12] <- "Q4"
 
-temp1 <- filter(nasa, !hem==0)
-tapply(temp1$ozone, temp1$QU, mean)
-temp2 <-
-tapply(nasa$temperature, nasa$QU, mean)
+north <- filter(nasa, !hem==0)
+tapply(north$ozone, north$QU, mean)
+south <- filter(nasa, !hem==1)
+tapply(south$temperature, south$QU, mean)
 
 ## Loop for Mean of each Variable
 for (i in 5:11) {
