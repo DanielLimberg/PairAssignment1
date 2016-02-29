@@ -18,7 +18,8 @@ getwd()
 source("PairAssignment1_DescriptiveStatistics.R")
 
 # Correlation plots
-
+qplot(dose, len, data=teeth)
+qplot(supp, len, data=teeth)
 
 # Test of statistical significance
 
