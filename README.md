@@ -22,8 +22,11 @@ In the first dataset, we are interested in a description of what causes teeth le
 ##Guide to R code
 In this folder we provide five key R scripts. We load both datasets and all necessary packages in our basic script **Y2_SS_Collaborative_PairAssignment.R**. In the second step we seperate our investigation into a Descriptive Statistics"" and a Joint Distributions part for both our datasets. The later files are linked to the Descriptive Statistics files - which are then both linked to our basic script.
 
-The ToothGrowth dataset is investigated in **PairAssignment1_DescriptiveStatistics_ToothGrowth.R** and **PairAssignment1_JointDistributions_ToothGrowth.R**. 
-The Nasa dataset is investigated in **PairAssignment1_DescriptiveStatistics_Nasa.R** and **PairAssignment1_JointDistributions_ToothGrowth.R**.
+The ToothGrowth dataset is investigated in **PairAssignment1_DescriptiveStatistics_ToothGrowth.R** and
+**PairAssignment1_JointDistributions_ToothGrowth.R**.
+The Nasa dataset is investigated in 
+**PairAssignment1_DescriptiveStatistics_Nasa.R** and
+**PairAssignment1_JointDistributions_ToothGrowth.R**.
 
 ##Link to authors GitHub pages
 [Daniel Limberg](https://github.com/DanielLimberg)
