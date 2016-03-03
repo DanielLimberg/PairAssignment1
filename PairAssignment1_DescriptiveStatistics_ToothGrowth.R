@@ -87,6 +87,14 @@ hist(teeth$len[teeth$supp=="OJ"],
 par(mfrow=c(1,1))
 ## The histograms reveal, that the supplement OJ is more efficient (i.e. more longer teeth)
 
+## Comparison of supplements by doses (relates to the later boxplot)
+ggplot(data=ToothGrowth, aes(x=as.factor(dose), y=len, fill=supp)) +
+  geom_bar(stat="identity",) +
+  facet_grid(. ~ supp) +
+  xlab("Dose in miligrams") +
+  ylab("Tooth length") +
+  guides(fill=guide_legend(title="Supplement type"))
+
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
 
 # Loop for Range
