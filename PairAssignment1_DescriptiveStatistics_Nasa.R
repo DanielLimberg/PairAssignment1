@@ -190,6 +190,12 @@ x <- nasa$temperature
 sum(x - mean(x) )
 ## Sum of Differences: substracting the means from the values. The sum is -2.622187e-10.
 
+#plot of Ozone vs. Temperature
+plot(x = nasa$ozone, y = nasa$temperature,xlab = "DU of Ozone", ylab = "Temperature in Kelvin", pch=0)
+title("Correlation between Ozone and Temperature")
+fit <- lm(nasa$temperature ~ nasa$ozone)   # temperature 'as a linear function of' ozone
+abline(fit,  col="firebrick1")
+
 a <- sum((x - mean(x))^2)
 table(a)
 ## Sum of Squares: summing up the suares of the differences. The sum is 926855.96.
