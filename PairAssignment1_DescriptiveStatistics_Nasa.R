@@ -195,6 +195,7 @@ plot(x = nasa$ozone, y = nasa$temperature,xlab = "DU of Ozone", ylab = "Temperat
 title("Correlation between Ozone and Temperature")
 fit <- lm(nasa$temperature ~ nasa$ozone)   # temperature 'as a linear function of' ozone
 abline(fit,  col="firebrick1")
+## Shows clear downward tendency: The higher ozone values, the lower the temperatures
 
 a <- sum((x - mean(x))^2)
 table(a)
