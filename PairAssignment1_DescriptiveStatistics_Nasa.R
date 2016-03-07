@@ -1,8 +1,8 @@
 ##########################
 # CSSD Pair Assignment 1: File structure, version control, R data, descriptive statistics
 # Deadline: 03/04/2016
-# Starting Date: 02/20/2016 | Last edited: 02/24/2016
-# Authors: Daniel Limberg & Lukas Müller
+# Starting Date: 02/20/2016 | Last edited: 03/04/2016
+# Authors: Daniel Limberg & Lukas Mueller
 # Descriptive Statistics: Measures of Central Tendency | Measures of Dispersion
 # NASA Dataset
 ##########################
@@ -33,7 +33,7 @@ tapply(nasa$ozone, nasa$hem, mean)
 tapply(nasa$temperature, nasa$hem, mean)
 ## Looking at the means for 'ozone' and 'temperature' for each hemisphere.
 ## The mean ozone value for the South is 259.0 DU. For the North it is 272.1 DU.
-## The mean temperature for the South is 297.1 Kelvin. For the North it is 298.4.
+## The mean temperature for the South is 297.1 Kelvin. For the North it is 298.4 K.
 
 
 ## mean ozone and temperature for quarter year
@@ -93,7 +93,7 @@ hist(nasa$ozone,
      main = "Ozone in the Atmosphere", 
      col = "deepskyblue2", 
      breaks = 20,
-     xlab = "Ozone",
+     xlab = "Dobson unit (DU) of Ozone",
      ylab = "Frequency")
 ## The distribution of the ozone values is right skewed.
 
@@ -102,7 +102,7 @@ hist(nasa$temperature,
      main = "Global Temperature", 
      col = "firebrick1", 
      breaks = 10,
-     xlab = "Temp.",
+     xlab = "Temperature in Kelvin",
      ylab = "Frequency")
 ## The distribution of the temperature values is left skewed.
 ## High temperatures are more common in Central America.
@@ -112,19 +112,19 @@ par(mfrow=c(2,2))
 hist(nasa$ozone[nasa$hem==1],
      main = "Ozone, N.",
      col = (c("deepskyblue2")),
-     xlab = "Ozone", ylab="Frequency")
+     xlab = "DU of Ozone", ylab="Frequency")
 hist(nasa$ozone[nasa$hem==0],
      main = "Ozone, S.",
      col = (c("deepskyblue2")),
-     xlab = "Ozone.", ylab="Frequency")
+     xlab = "DU of Ozone", ylab="Frequency")
 hist(nasa$temperature[nasa$hem==1],
      main = "Temp., N.",
      col = (c("firebrick1")),
-     xlab = "Temp.", ylab="Frequency")
+     xlab = "Temp. in K", ylab="Frequency")
 hist(nasa$temperature[nasa$hem==0],
      main = "Temp., S.",
      col = (c("firebrick1")),
-     xlab = "Temp.", ylab="Frequency")
+     xlab = "Temp. in K", ylab="Frequency")
 par(mfrow=c(1,1))
 ## For North and South ozone is right skewed.
 ## For North and South temperature is left skewed.

@@ -1,8 +1,8 @@
 ##########################
 # CSSD Pair Assignment 1: File structure, version control, R data, descriptive statistics
 # Deadline: 03/04/2016
-# Starting Date: 02/20/2016 | Last edited: 02/24/2016
-# Authors: Daniel Limberg & Lukas Müller
+# Starting Date: 02/20/2016 | Last edited: 03/04/2016
+# Authors: Daniel Limberg & Lukas Mueller
 # Descriptive Statistics: Measures of Central Tendency | Measures of Dispersion
 # ToothGrowth Dataset
 ##########################
@@ -71,7 +71,7 @@ hist(teeth$dose,
 ## Each dose has been fed to the pigs 20 times.
 
 # Frequency of Supplement given to Guinea Pigs
-plot(teeth$supp, xlab = "Supplement")
+plot(teeth$supp, xlab = "Supplement", ylab = "Frequency")
 ## Each treatment group consisted of 30 guinea pigs
 
 # Visual Comparison of Supplements
@@ -92,7 +92,7 @@ ggplot(data=ToothGrowth, aes(x=as.factor(dose), y=len, fill=supp)) +
   geom_bar(stat="identity",) +
   facet_grid(. ~ supp) +
   xlab("Dose in miligrams") +
-  ylab("Tooth length") +
+  ylab("Length of Teeth in mm") +
   guides(fill=guide_legend(title="Supplement type"))
 
 # Measures of Dispersion: Range | IQR | Standard Deviation | Boxplots | Variance
@@ -149,18 +149,18 @@ for (i in 2:3) {
 
 boxplot(len~supp, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Supplement")
+        main="Lenght of Teeth", xlab="Supplement", ylab="Length in mm")
 ## Combining measures of central tendency (mean, range and IQR), the boxplots also show that
 ## supplement OJ is more efficient
 
 boxplot(len~dose, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Dose in mg/days")
+        main="Lenght of Teeth", xlab="Dose in mg/days", ylab="Length in mm")
 ## Regardless of the supplement: The higher the dose, the longer the teeth on average
 
 boxplot(len~supp*dose, data=teeth, varwidth=TRUE, notch=FALSE,
         col=(c("gold","darkgreen")),
-        main="Lenght of Teeth", xlab="Supplement")
+        main="Lenght of Teeth", xlab="Supplement", ylab="Length in mm")
 ## Combining dose and supplement visually, again we find that the supplement OJ is more efficent
 
 # Step by step calculation of the Variance
